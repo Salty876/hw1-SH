@@ -62,7 +62,7 @@ struct Point2D {
 
         return (x == other.x && y == other.y);
     }
-    Point2D &operator*=(const int &scalar) {
+    Point2D &operator*=(const float &scalar) {
         // TODO: write this code
         x *= scalar;
         y *= scalar;
@@ -101,12 +101,13 @@ struct Point2D {
 
 static std::ostream &operator<<(std::ostream &os, const Point2D &p) {
     // TODO: write this code
+    os << "(" << p.x << ", " << p.y << ")";
     return os;
 }
 
 static Point2D operator*(float number, const Point2D &rhs) {
     // TODO: write this code
-    return rhs;
+    return Point2D(rhs.x * number, rhs.y * number);
 }
 
 struct Line {
@@ -116,15 +117,57 @@ struct Line {
     Line(float x1, float y1, float x2, float y2) : p1(x1, y1), p2(x2, y2) {}
     float Length() const {
         // TODO: write this code
-        return 0;
+        return p1.Distance(p2);
     }
     Point2D ClosestPoint(const Point2D &p) const {
         // TODO: write this code
-        return p;
+        // (This may be wrong but here im assuming we want the point closest to p (any pooint in line))
+        
+        Point2D ab = p2 - p1;
+        Point2D ap = p - p1;
+
+        float t = (ab.Dot(ap)) / (ab.Dot(ab));
+        
+        //clamp t 
+        
+        if (t < 0.0f) {
+          t = 0.0f;
+        }
+
+        else if (t > 1.0f) {
+          t = 1.0f;
+        }
+
+        Point2D val = p1 + ab * t;
+
+        
+        return val;
     }
     bool Crosses(Line other, Point2D &crossingPoint) const {
         // TODO: write this code
-        return false;
+        
+        Point2D P = p2 - p1;
+        Point2D Q = other.p2 - other.p1;
+        
+        float cp = Point2D::Cross(P, Q);
+    
+        if (cp == 0.0f){
+          // Vectors are parralel so cant cross
+          return false;
+        }
+
+        float t = (Point2d::Cross((other.p1 - p1), Q) / cp;
+
+        float u = (Point2d::Cross((other.p1 - p1), P) / cp;
+
+        if ((t < 0.0f) || (t > 1.0f) || (u < 0.0f) || (u < 1.0f)) {
+          // Infinite lines intersect but not the lines we have
+          return false;
+        }
+
+        Point2D intersect = p1 + (p2 - p1) * t;
+
+        return (intersect == crossingPoint);
     }
 };
 
