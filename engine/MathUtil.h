@@ -157,10 +157,8 @@ struct Line {
         }
 
         float t = (Point2D::Cross((other.p1 - p1), Q) / cp);
-        float t = Point2D::Cross((other.p1 - p1), Q) / cp;
 
         float u = (Point2D::Cross((other.p1 - p1), P) / cp);
-        float u = Point2D::Cross((other.p1 - p1), P) / cp;
 
         if ((t < 0.0f) || (t > 1.0f) || (u < 0.0f) || (u < 1.0f)) {
           // Infinite lines intersect but not the lines we have
