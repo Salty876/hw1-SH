@@ -15,7 +15,7 @@ Bullet::Bullet(CMPUT350::Point2D location, CMPUT350::Point2D heading, bool playe
 
     // Using a hard-coded for now, we could
     // make this a parameter if needed
-    this->mBulletSpeed = 1.0f;
+    this->mBulletSpeed = 15.0f;
 }
 
 bool Bullet::IsPlayerBullet()
@@ -67,7 +67,7 @@ void Bullet::RenderBackground(CMPUT350::GameContext* context)
 void Bullet::RenderForeground(CMPUT350::GameContext* context)
 {
     CMPUT350::DrawContext* api = context->ScreenContext;
-    api->DrawLine(mPreviousLocation, mCurrentLocation, 1.0f, CMPUT350::Colors::white);
+    api->DrawLine(mPreviousLocation, mCurrentLocation, 5.0f, CMPUT350::Colors::white);
 }
 
 void Bullet::CollisionEnter(const std::shared_ptr<CMPUT350::CollisionObject>& obj)
