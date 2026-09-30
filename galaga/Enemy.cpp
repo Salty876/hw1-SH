@@ -3,7 +3,7 @@
 
 Enemy::Enemy(CMPUT350::Point2D loc)
 {   
-    float mEnemySize = 5.0f; // This can be changed to a parameter
+    float mEnemySize = 20.0f; // This can be changed to a parameter
 
     this->mLocation = loc;
     this->mIsAlive = true;
