@@ -7,7 +7,7 @@ Player::Player(CMPUT350::Point2D loc)
     // TODO: Update code
     mLocation = loc;
     mPlayerSIze = 40.f;
-    mMoveSpeed = 10.f;
+    mMoveSpeed = 20.f;
     mIsAlive = true;
 
     updateBounds();
@@ -62,6 +62,12 @@ bool Player::HandleKeyEvent(CMPUT350::GameContext* context, char key)
         CMPUT350::Point2D bulletHeading(0.f, -1.f);
 
         if (mBullet1.expired()) {
+            std::shared_ptr<Bullet> bullet = std::make_shared<Bullet>(bulletLocation, bulletHeading, true);
+            context->mEngineView->AddGameObject(bullet);
+            mBullet1 = bullet;
+            return true;
+        }
+        else if (mBullet2.expired()) {
             std::shared_ptr<Bullet> bullet = std::make_shared<Bullet>(bulletLocation, bulletHeading, true);
             context->mEngineView->AddGameObject(bullet);
             mBullet2 = bullet;
