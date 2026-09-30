@@ -1,5 +1,6 @@
 #include "Bullet.h"
 #include "DrawContext.h"
+#include "Player.h"
 
 Bullet::Bullet(CMPUT350::Point2D location, CMPUT350::Point2D heading, bool player)
 {
@@ -71,8 +72,16 @@ void Bullet::RenderForeground(CMPUT350::GameContext* context)
 }
 
 void Bullet::CollisionEnter(const std::shared_ptr<CMPUT350::CollisionObject>& obj)
-{
-    Kill(); // Any collision with a player or enemy destroys the bullet
+{   
+    std::shared_ptr<Player> mObj = std::dynamic_pointer_cast<Player>(obj);
+    if (mObj) // Colliding Object is Player
+    {
+        if (IsPlayerBullet()) {
+            return;
+        }
+
+        Kill();
+    }
 }
 
 void Bullet::Kill()
