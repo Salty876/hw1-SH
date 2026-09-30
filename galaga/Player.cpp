@@ -7,7 +7,7 @@ Player::Player(CMPUT350::Point2D loc)
     // TODO: Update code
     mLocation = loc;
     mPlayerSIze = 40.f;
-    mMoveSpeed = 20.f;
+    mMoveSpeed = 18.f;
     mIsAlive = true;
 
     updateBounds();

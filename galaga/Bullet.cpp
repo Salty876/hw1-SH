@@ -1,6 +1,7 @@
 #include "Bullet.h"
 #include "DrawContext.h"
 #include "Player.h"
+#include <cmath>
 
 Bullet::Bullet(CMPUT350::Point2D location, CMPUT350::Point2D heading, bool player)
 {
@@ -79,9 +80,9 @@ void Bullet::CollisionEnter(const std::shared_ptr<CMPUT350::CollisionObject>& ob
         if (IsPlayerBullet()) {
             return;
         }
-
-        Kill();
     }
+
+    Kill();
 }
 
 void Bullet::Kill()
