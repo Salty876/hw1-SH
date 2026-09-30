@@ -80,28 +80,18 @@ void Player::RenderBackground(CMPUT350::GameContext* context)
 
 void Player::RenderForeground(CMPUT350::GameContext* context)
 {
-    // CMPUT350::DrawContext *drawMachine = context->ScreenContext;
-    // float halfSize = mPlayerSIze / 2.f;
+    CMPUT350::DrawContext *drawMachine = context->ScreenContext;
+    float halfSize = mPlayerSIze / 2.f;
 
-    // CMPUT350::Point2D nose(mLocation.x, mLocation.y - halfSize);
-    // CMPUT350::Point2D leftBottom(mLocation.x - halfSize, mLocation.y + halfSize);
-    // CMPUT350::Point2D rightBottom(mLocation.x + halfSize, mLocation.y + halfSize);
+    CMPUT350::Point2D nose(mLocation.x, mLocation.y - halfSize);
+    CMPUT350::Point2D leftBottom(mLocation.x - halfSize, mLocation.y + halfSize);
+    CMPUT350::Point2D rightBottom(mLocation.x + halfSize, mLocation.y + halfSize);
 
-    // drawMachine->DrawLine(leftBottom, nose, 3.f, CMPUT350::Colors::white);
-    // drawMachine->DrawLine(rightBottom, nose, 3.f, CMPUT350::Colors::white);
-    // drawMachine->DrawLine(rightBottom, leftBottom, 3.f, CMPUT350::Colors::white);
+    drawMachine->DrawLine(leftBottom, nose, 3.f, CMPUT350::Colors::white);
+    drawMachine->DrawLine(rightBottom, nose, 3.f, CMPUT350::Colors::white);
+    drawMachine->DrawLine(rightBottom, leftBottom, 3.f, CMPUT350::Colors::white);
 
-    CMPUT350::Rect testRect(
-        mLocation.x - 20,
-        mLocation.y - 20,
-        90,
-        90
-    );
 
-    context->ScreenContext->DrawRect(
-        testRect,
-        CMPUT350::Colors::green
-    );
 
 
 }
